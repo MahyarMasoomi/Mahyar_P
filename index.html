@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پورتفولیوی شخصی - [نام شما]</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for a clean, modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- AOS (Animate On Scroll) Library for cool scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Custom styles for a GitHub-like dark theme and smooth transitions */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* GitHub dark background */
+            color: #c9d1d9; /* GitHub text color */
+            scroll-behavior: smooth; /* Smooth scrolling for navigation */
+        }
+        .navbar {
+            background-color: #161b22; /* GitHub header background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        /* Specific styling for navigation links (buttons) */
+        .nav-button {
+            /* Added subtle gradient and border for a cooler look */
+            background-image: linear-gradient(to right, #161b22, #21262d);
+            border: 1px solid #21262d;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex; /* Ensure icon and text align */
+            align-items: center; /* Center items vertically */
+            gap: 8px; /* Space between icon and text */
+            padding: 8px 16px; /* Tailwind's px-3 py-2 roughly */
+            border-radius: 6px; /* Tailwind's rounded-md */
+            text-decoration: none; /* Remove underline */
+            color: #c9d1d9; /* Default text color */
+            font-weight: 500; /* Medium font weight */
+        }
+        .nav-button:hover {
+            color: #ffffff; /* White text on hover for better contrast */
+            background-color: #2ea043; /* Darker green on hover, matching GitHub's primary action color */
+            transform: translateY(-3px); /* More pronounced lift on hover */
+            box-shadow: 0 6px 20px rgba(35, 134, 54, 0.6); /* Stronger glow/shadow */
+            border-color: #2ea043; /* Border color matches hover background */
+        }
+        .btn-primary {
+            background-color: #238636; /* GitHub green button */
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #2ea043; /* Darker green on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(35, 134, 54, 0.4);
+        }
+        .card {
+            background-color: #161b22; /* Card background */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-8px); /* Lift effect on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+        }
+        .skill-bar-bg {
+            background-color: #21262d; /* Skill bar background */
+        }
+        .skill-bar-fill {
+            background-color: #58a6ff; /* Skill bar fill color */
+            transition: width 1s ease-out; /* Animation for skill bar fill */
+        }
+        /* Custom scrollbar for a sleek look */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #21262d;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2ea043;
+        }
+        /* Style for form inputs */
+        .form-input {
+            background-color: #0d1117;
+            border: 1px solid #30363d;
+            color: #c9d1d9;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            box-sizing: border-box; /* Ensures padding doesn't add to width */
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #58a6ff;
+            box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.3);
+        }
+        /* Flex container for skill name and percentage */
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px; /* Space between header and bar */
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+    <!-- Navbar -->
+    <nav class="navbar p-4 fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Site Title / Your Name (no button styling) -->
+            <a href="#about-skills" class="text-2xl font-bold text-white">
+                [نام شما]
+            </a>
+            <!-- Navigation Links (with button styling) -->
+            <div class="flex space-x-4 space-x-reverse">
+                <a href="#about-skills" class="nav-button">
+                    <i class="fas fa-user-circle"></i>درباره من و مهارت‌ها
+                </a>
+                <a href="#projects" class="nav-button">
+                    <i class="fas fa-project-diagram"></i>پروژه‌ها
+                </a>
+                <a href="#cybersecurity" class="nav-button">
+                    <i class="fas fa-shield-alt"></i>امنیت سایبری
+                </a>
+                <a href="#contact" class="nav-button">
+                    <i class="fas fa-envelope"></i>تماس با من
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - About Me & Skills -->
+    <section id="about-skills" class="min-h-screen flex items-center justify-center pt-20 pb-10">
+        <div class="container mx-auto px-6 py-12 flex flex-col lg:flex-row items-center justify-center gap-12">
+            <!-- Profile Image and Intro -->
+            <div class="lg:w-1/3 flex flex-col items-center text-center" data-aos="fade-right" data-aos-duration="1000">
+                <!-- Add an ID to the image for JavaScript to update its src -->
+                <img id="github-profile-pic" src="https://placehold.co/200x200/21262D/C9D1D9?text=Your+Photo" alt="عکس پروفایل" class="rounded-full border-4 border-gray-700 shadow-lg mb-6 w-48 h-48 object-cover">
+                <h1 class="text-5xl font-extrabold text-white mb-4 leading-tight">
+                    سلام، من [نام شما] هستم!
+                </h1>
+                <p class="text-xl text-gray-400 mb-6 max-w-md">
+                    یک توسعه‌دهنده پرشور و متخصص امنیت سایبری با علاقه‌ای عمیق به ساختن راه‌حل‌های نوآورانه و امن.
+                </p>
+                <button class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md">
+                    <a href="#projects" class="text-white no-underline">پروژه‌های من</a>
+                </button>
+            </div>
+
+            <!-- About Me and Skills Content -->
+            <div class="lg:w-2/3 space-y-10" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <!-- About Me -->
+                <div class="bg-[#161b22] p-8 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-duration="1000">
+                    <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-3">درباره من</h2>
+                    <p class="text-gray-300 leading-relaxed text-lg mb-4">
+                        من [نام شما] هستم، یک توسعه‌دهنده فول‌استک با چندین سال تجربه در ساخت وب‌سایت‌ها و اپلیکیشن‌های قدرتمند و مقیاس‌پذیر. از طراحی رابط کاربری جذاب و کاربرپسند گرفته تا پیاده‌سازی منطق پیچیده بک‌اند، همواره به دنبال ارائه‌ی بهترین و بهینه‌ترین راه‌حل‌ها هستم. در طول مسیر حرفه‌ای خود، با زبان‌ها و فریم‌ورک‌های متعددی کار کرده‌ام و همیشه آماده یادگیری و پذیرش چالش‌های جدید هستم.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed text-lg">
+                        علاوه بر توسعه نرم‌افزار، به دنیای پویای امنیت سایبری نیز بسیار علاقه‌مندم و در زمینه شناسایی آسیب‌پذیری‌ها، تست نفوذ و افزایش امنیت سیستم‌ها فعالیت می‌کنم. هدف من ایجاد محصولاتی است که نه تنها کارآمد و زیبا باشند، بلکه از بالاترین استانداردهای امنیتی نیز برخوردار باشند. من معتقدم که ترکیبی از خلاقیت، دقت فنی و آگاهی امنیتی می‌تواند به خلق تجربیات دیجیتالی بی‌نظیر منجر شود.
+                    </p>
+                </div>
+
+                <!-- Skills -->
+                <div class="bg-[#161b22] p-8 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+                    <h2 class="text-3xl font-bold text-white mb-6 border-b border-gray-700 pb-3">مهارت‌ها</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Skill Item: HTML & CSS -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">HTML & CSS</h3>
+                                <span class="text-gray-400 text-sm">95%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item: JavaScript -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">JavaScript</h3>
+                                <span class="text-gray-400 text-sm">90%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item: React.js -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">React.js</h3>
+                                <span class="text-gray-400 text-sm">85%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item: Node.js -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">Node.js</h3>
+                                <span class="text-gray-400 text-sm">80%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item: Python -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">Python</h3>
+                                <span class="text-gray-400 text-sm">75%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Item: Databases (SQL/NoSQL) -->
+                        <div class="flex flex-col">
+                            <div class="skill-header">
+                                <h3 class="text-xl font-semibold text-white">Databases (SQL/NoSQL)</h3>
+                                <span class="text-gray-400 text-sm">70%</span>
+                            </div>
+                            <div class="w-full skill-bar-bg rounded-full h-3">
+                                <div class="skill-bar-fill h-3 rounded-full" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="min-h-screen py-20 bg-[#0d1117]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-white text-center mb-12" data-aos="fade-up">پروژه‌های من</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project Card 1 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://placehold.co/400x250/21262D/C9D1D9?text=Project+1" alt="پروژه وب‌سایت تجارت الکترونیک" class="rounded-lg mb-4 w-full h-48 object-cover">
+                    <h3 class="text-2xl font-semibold text-white mb-3">وب‌سایت تجارت الکترونیک</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        یک پلتفرم کامل تجارت الکترونیک با قابلیت‌های مدیریت محصول، سبد خرید، و پرداخت آنلاین. این پروژه با هدف ایجاد یک تجربه خرید یکپارچه و امن توسعه یافته است.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-600 text-white text-xs px-2 py-1 rounded-full">React</span>
+                        <span class="bg-green-600 text-white text-xs px-2 py-1 rounded-full">Node.js</span>
+                        <span class="bg-purple-600 text-white text-xs px-2 py-1 rounded-full">MongoDB</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <a href="https://github.com/yourusername/project1" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                            <i class="fab fa-github mr-2"></i>گیت‌هاب
+                        </a>
+                        <a href="#" target="_blank" class="text-green-400 hover:text-green-300 transition-colors duration-300">
+                            <i class="fas fa-external-link-alt mr-2"></i>دمو زنده
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://placehold.co/400x250/21262D/C9D1D9?text=Project+2" alt="پروژه اپلیکیشن مدیریت وظایف" class="rounded-lg mb-4 w-full h-48 object-cover">
+                    <h3 class="text-2xl font-semibold text-white mb-3">اپلیکیشن مدیریت وظایف</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        یک اپلیکیشن کاربردی برای مدیریت وظایف روزانه با قابلیت‌های یادآوری، دسته‌بندی و همگام‌سازی ابری. این اپلیکیشن به افزایش بهره‌وری کمک می‌کند.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-yellow-600 text-white text-xs px-2 py-1 rounded-full">Vue.js</span>
+                        <span class="bg-red-600 text-white text-xs px-2 py-1 rounded-full">Firebase</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <a href="https://github.com/yourusername/project2" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                            <i class="fab fa-github mr-2"></i>گیت‌هاب
+                        </a>
+                        <a href="#" target="_blank" class="text-green-400 hover:text-green-300 transition-colors duration-300">
+                            <i class="fas fa-external-link-alt mr-2"></i>دمو زنده
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://placehold.co/400x250/21262D/C9D1D9?text=Project+3" alt="پروژه سیستم رزرو آنلاین" class="rounded-lg mb-4 w-full h-48 object-cover">
+                    <h3 class="text-2xl font-semibold text-white mb-3">سیستم رزرو آنلاین</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        سیستمی برای رزرو نوبت یا خدمات با پنل مدیریت برای ارائه‌دهندگان و رابط کاربری ساده برای کاربران. این سیستم فرآیند رزرو را تسهیل می‌کند.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-indigo-600 text-white text-xs px-2 py-1 rounded-full">Laravel</span>
+                        <span class="bg-blue-700 text-white text-xs px-2 py-1 rounded-full">MySQL</span>
+                    </div>
+                    <div class="flex justify-between items-center mt-4">
+                        <a href="https://github.com/yourusername/project3" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors duration-300">
+                            <i class="fab fa-github mr-2"></i>گیت‌هاب
+                        </a>
+                        <a href="#" target="_blank" class="text-green-400 hover:text-green-300 transition-colors duration-300">
+                            <i class="fas fa-external-link-alt mr-2"></i>دمو زنده
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Add more project cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cybersecurity Skills Section -->
+    <section id="cybersecurity" class="min-h-screen py-20 bg-[#0d1117]">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-white text-center mb-12" data-aos="fade-up">مهارت‌های امنیت سایبری</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cybersecurity Skill Card 1 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-network-wired text-5xl text-red-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">امنیت شبکه</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        شناخت عمیق پروتکل‌های شبکه، پیکربندی فایروال‌ها، سیستم‌های تشخیص و جلوگیری از نفوذ (IDS/IPS)، و پیاده‌سازی شبکه‌های خصوصی مجازی (VPN) برای تضمین امنیت ارتباطات.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Firewalls</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">VPN</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">IDS/IPS</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skill Card 2 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-bug text-5xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">تست نفوذ و آسیب‌پذیری</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        تجربه عملی در شناسایی، تحلیل و بهره‌برداری از آسیب‌پذیری‌های امنیتی در سیستم‌ها و برنامه‌ها. توانایی استفاده از ابزارهای پیشرفته تست نفوذ و تهیه گزارش‌های جامع از یافته‌ها.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Metasploit</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Burp Suite</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Nmap</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skill Card 3 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-lock text-5xl text-green-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">امنیت برنامه‌های وب</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        آشنایی کامل با OWASP Top 10 و رایج‌ترین آسیب‌پذیری‌های وب (مانند XSS, SQL Injection, CSRF). توانایی طراحی و پیاده‌سازی برنامه‌های وب امن با رعایت بهترین شیوه‌ها.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">XSS</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">SQL Injection</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">OWASP</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skill Card 4 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-fingerprint text-5xl text-blue-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">احراز هویت و مجوز</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        تجربه در پیاده‌سازی و مدیریت سیستم‌های احراز هویت قوی (مانند OAuth 2.0، JWT) و مکانیزم‌های مجوز دسترسی برای کنترل دقیق دسترسی کاربران به منابع.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">OAuth</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">JWT</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skill Card 5 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="500">
+                    <i class="fas fa-shield-alt text-5xl text-purple-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">مهندسی معکوس</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        توانایی تحلیل بدافزارها و کدهای اجرایی برای درک عملکرد، شناسایی نقاط ضعف و استخراج اطلاعات حیاتی امنیتی با استفاده از ابزارهای مهندسی معکوس.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">IDA Pro</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Ghidra</span>
+                    </div>
+                </div>
+
+                <!-- Cybersecurity Skill Card 6 -->
+                <div class="card p-6 rounded-xl shadow-lg border border-gray-800" data-aos="fade-up" data-aos-delay="600">
+                    <i class="fas fa-file-invoice text-5xl text-cyan-500 mb-4"></i>
+                    <h3 class="text-2xl font-semibold text-white mb-3">مدیریت ریسک</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        توانایی ارزیابی، تحلیل و مدیریت ریسک‌های امنیتی در سیستم‌ها و سازمان‌ها، شامل شناسایی تهدیدات، ارزیابی آسیب‌پذیری‌ها و پیشنهاد راهکارهای کاهش ریسک.
+                    </p>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Risk Assessment</span>
+                        <span class="bg-gray-600 text-white text-xs px-2 py-1 rounded-full">Compliance</span>
+                    </div>
+                </div>
+
+                <!-- Add more cybersecurity skill cards as needed -->
+            </div>
+            <!-- Certifications Section (Optional) -->
+            <div class="bg-[#161b22] p-8 rounded-xl shadow-lg border border-gray-800 mt-12" data-aos="fade-up" data-aos-delay="700">
+                <h3 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-3">گواهینامه‌ها</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-award text-3xl text-yellow-400"></i>
+                        <p class="text-gray-300 text-lg">CompTIA Security+</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <i class="fas fa-award text-3xl text-yellow-400"></i>
+                        <p class="text-gray-300 text-lg">Certified Ethical Hacker (CEH)</p>
+                    </div>
+                    <!-- Add more certifications -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="min-h-screen flex items-center justify-center py-20 bg-[#0d1117]">
+        <div class="container mx-auto px-6 py-12">
+            <h2 class="text-4xl font-bold text-white text-center mb-12" data-aos="fade-up">تماس با من</h2>
+            <div class="flex flex-col lg:flex-row items-center justify-center gap-12">
+                <div class="lg:w-1/2 bg-[#161b22] p-8 rounded-xl shadow-lg border border-gray-800" data-aos="fade-right" data-aos-duration="1000">
+                    <h3 class="text-2xl font-semibold text-white mb-6 border-b border-gray-700 pb-3">ارسال پیام</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-300 text-lg font-medium mb-2">نام شما:</label>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="نام کامل شما" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-300 text-lg font-medium mb-2">ایمیل شما:</label>
+                            <input type="email" id="email" name="email" class="form-input" placeholder="ایمیل شما" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-300 text-lg font-medium mb-2">پیام شما:</label>
+                            <textarea id="message" name="message" rows="6" class="form-input" placeholder="پیام خود را اینجا بنویسید..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary text-white font-semibold py-3 px-8 rounded-lg shadow-md w-full">
+                            ارسال پیام
+                        </button>
+                    </form>
+                </div>
+                <div class="lg:w-1/2 bg-[#161b22] p-8 rounded-xl shadow-lg border border-gray-800" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                    <h3 class="text-2xl font-semibold text-white mb-6 border-b border-gray-700 pb-3">اطلاعات تماس</h3>
+                    <div class="space-y-4 text-gray-300 text-lg">
+                        <p><i class="fas fa-map-marker-alt text-blue-400 ml-3"></i>تهران، ایران</p>
+                        <p><i class="fas fa-phone-alt text-blue-400 ml-3"></i>+98 912 123 4567</p>
+                        <p><i class="fas fa-envelope text-blue-400 ml-3"></i>youremail@example.com</p>
+                        <p><i class="fab fa-linkedin text-blue-400 ml-3"></i><a href="https://linkedin.com/in/yourusername" target="_blank" class="hover:underline">linkedin.com/in/yourusername</a></p>
+                        <p><i class="fab fa-github text-blue-400 ml-3"></i><a href="https://github.com/yourusername" target="_blank" class="hover:underline">github.com/yourusername</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#161b22] py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 mb-6">
+                ساخته شده با ❤️ توسط [نام شما]
+            </p>
+            <div class="flex justify-center space-x-6 space-x-reverse">
+                <a href="https://github.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110 transition-transform duration-300">
+                    <i class="fab fa-github text-3xl"></i>
+                </a>
+                <a href="https://linkedin.com/in/yourusername" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110 transition-transform duration-300">
+                    <i class="fab fa-linkedin text-3xl"></i>
+                </a>
+                <a href="https://twitter.com/yourusername" target="_blank" class="text-gray-400 hover:text-white transform hover:scale-110 transition-transform duration-300">
+                    <i class="fab fa-twitter text-3xl"></i>
+                </a>
+                <a href="mailto:youremail@example.com" class="text-gray-400 hover:text-white transform hover:scale-110 transition-transform duration-300">
+                    <i class="fas fa-envelope text-3xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS library
+        AOS.init({
+            once: true, // Whether animation should happen only once - while scrolling down
+            duration: 800, // Duration of animation
+            easing: 'ease-in-out', // Easing function
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Function to fetch GitHub profile picture
+        async function fetchGitHubProfilePic(Mahyar_P) {
+            const profilePicElement = document.getElementById('github-profile-pic');
+            if (!profilePicElement) return;
+
+            try {
+                // Fetch user data from GitHub API
+                const username = Mahyar_P; // Replace with your GitHub username
+                const response = await fetch(`https://api.github.com/users/${username}`);
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.statusText}`);
+                }
+                const data = await response.json();
+
+                // Update the image source with the avatar URL
+                if (data.avatar_url) {
+                    profilePicElement.src = data.avatar_url;
+                }
+            } catch (error) {
+                console.error("Failed to fetch GitHub profile picture:", error);
+                // Optionally, keep the placeholder or show a default image on error
+                profilePicElement.src = "https://placehold.co/200x200/21262D/C9D1D9?text=Mahyar_P";
+            }
+        }
+
+        // Call the function with your GitHub username
+        // IMPORTANT: Replace 'YOUR_GITHUB_USERNAME' with your actual GitHub username
+        fetchGitHubProfilePic('YOUR_GITHUB_USERNAME'); // Example: 'octocat'
+    </script>
+</body>
+</html>
